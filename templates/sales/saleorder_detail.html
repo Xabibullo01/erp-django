@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Sotuv #{{ object.pk }}{% endblock %}
+
+{% block content %}
+<h2 class="text-lg font-semibold mb-6">Sotuv #{{ object.pk }}</h2>
+
+<div class="grid gap-4 sm:grid-cols-3 mb-8">
+  <div class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md p-4 rounded-xl
+              ring-1 ring-white/30 shadow">
+    <p class="text-sm text-slate-500">Mijoz</p>
+    <p class="font-semibold">{{ object.customer.first_name }}</p>
+  </div>
+  <div class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md p-4 rounded-xl
+              ring-1 ring-white/30 shadow">
+    <p class="text-sm text-slate-500">Sana</p>
+    <p class="font-semibold">{{ object.created_at|date:"Y-m-d" }}</p>
+  </div>
+  <div class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md p-4 rounded-xl
+              ring-1 ring-white/30 shadow">
+    <p class="text-sm text-slate-500">Jami</p>
+    <p class="font-semibold">{{ object.total|floatformat:0 }} so‘m</p>
+  </div>
+</div>
+
+<h3 class="text-md font-semibold mb-4">Buyurtma tarkibi</h3>
+
+<div class="overflow-x-auto mb-6">
+  <table class="min-w-full text-sm">
+    <thead class="bg-slate-100 dark:bg-slate-800/60 uppercase tracking-wider">
+      <tr>
+        <th class="p-3 font-semibold">Mahsulot</th>
+        <th class="p-3 font-semibold">Miqdori</th>
+        <th class="p-3 font-semibold">Narxi</th>
+        <th class="p-3 font-semibold">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-slate-700
+                 bg-white/70 dark:bg-slate-900/50">
+      {% for line in object.lines.all %}
+        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800">
+          <td class="p-3">{{ line.product.name }}</td>
+          <td class="p-3">{{ line.quantity }}</td>
+          <td class="p-3">{{ line.price }}</td>
+          <td class="p-3">{{ line.subtotal }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<a href="{% url 'sale_list' %}"
+   class="inline-flex items-center gap-1 rounded-lg border border-slate-300 dark:border-slate-600
+          px-6 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold">
+  Orqaga
+</a>
+{% endblock %}

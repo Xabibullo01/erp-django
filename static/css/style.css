@@ -1,0 +1,246 @@
+:root {
+  --erp-blue: #0d6efd;
+  --erp-blue-dark: #0b5ed7;
+  --erp-green: #198754;
+  --erp-green-dark: #157347;
+  --erp-gray-bg: #f5f7fb;
+  --erp-gray-light: #f1f3f8;
+  --erp-gray-border: #e9edf5;
+  --erp-shadow-sm: 0 2px 8px rgba(13, 110, 253, 0.05);
+  --erp-shadow-md: 0 4px 16px rgba(13, 110, 253, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--erp-gray-bg);
+  color: #313131;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.erp-navbar {
+  background: #fff;
+  border-bottom: 1px solid var(--erp-gray-border);
+  box-shadow: var(--erp-shadow-sm);
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.erp-navbar .nav-link {
+  color: #495057;
+  font-weight: 500;
+  padding: 0.7rem 1rem;
+  transition: color 0.15s;
+}
+
+.erp-navbar .nav-link:hover,
+.erp-navbar .nav-link.active {
+  color: var(--erp-blue);
+}
+
+.erp-navbar .dropdown-menu {
+  border-radius: 0.7rem;
+  box-shadow: var(--erp-shadow-sm);
+  border: 1px solid var(--erp-gray-border);
+  min-width: 160px;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.27rem 0.75rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.user-avatar img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--erp-blue);
+  object-fit: cover;
+  background: #fff;
+}
+
+.erp-card {
+  background: #fff;
+  border: 1px solid var(--erp-gray-border);
+  border-radius: 0.9rem;
+  box-shadow: var(--erp-shadow-md);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transition: box-shadow 0.16s, border 0.16s;
+  overflow: hidden;
+}
+
+.erp-card small {
+  color: #7a7a7a;
+  letter-spacing: 0.2px;
+  font-size: 1.09rem;
+  margin-bottom: 0.4rem;
+}
+
+.erp-card h2 {
+  margin: 0;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.form-control:focus {
+  border-color: var(--erp-blue);
+  box-shadow: 0 0 0 0.19rem rgba(13, 110, 253, 0.12);
+}
+
+.btn-primary {
+  background: var(--erp-blue);
+  border-color: var(--erp-blue);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--erp-blue-dark);
+  border-color: var(--erp-blue-dark);
+}
+
+.btn-success {
+  background: var(--erp-green);
+  border-color: var(--erp-green);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+  background: var(--erp-green-dark);
+  border-color: var(--erp-green-dark);
+}
+
+input[type="file"].form-control {
+  padding: 0.25rem 0.5rem;
+}
+
+/* Tables */
+.table-erp {
+  border: 1px solid var(--erp-gray-border);
+  border-radius: 0.7rem;
+  box-shadow: var(--erp-shadow-sm);
+  overflow: hidden;
+  background: #fff;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-erp th {
+  background: var(--erp-gray-light);
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.table-erp tbody tr:hover {
+  background: #f8fafc;
+}
+
+.table-erp td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+}
+
+/* Chart canvas styling */
+
+
+/* Alerts */
+.alert-erp {
+  background: #e8f4ff;
+  border: 1px solid #b6e0fe;
+  padding: 0.7rem 1rem;
+  border-radius: 0.6rem;
+  color: #055160;
+  font-size: 0.98rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* Confirm modal */
+.confirm-modal .modal-content {
+  border-radius: 1rem;
+  border: 1px solid var(--erp-gray-border);
+  box-shadow: var(--erp-shadow-md);
+}
+
+/* Responsive Helpers */
+@media (max-width: 768px) {
+  .erp-card {
+    padding: 1.2rem 0.7rem;
+    font-size: 0.96rem;
+  }
+  .erp-card h2 {
+    font-size: 1.5rem;
+  }
+  .erp-navbar .nav-link {
+    padding: 0.5rem 0.65rem;
+  }
+  .user-avatar img {
+    width: 28px;
+    height: 28px;
+  }
+  .table-erp th,
+  .table-erp td {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .erp-card {
+    padding: 0.7rem 0.2rem;
+    font-size: 0.94rem;
+  }
+  .erp-card h2 {
+    font-size: 1.1rem;
+  }
+  .erp-navbar .nav-link {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.91rem;
+  }
+}
+
+/* SaleOrder form tweaks */
+.table-erp thead th {
+  vertical-align: middle;
+}
+
+#orderLines tbody td:not(:last-child) {
+  vertical-align: middle;
+}
+
+#orderLines .btn-sm {
+  line-height: 1;
+}
+
+/* Pie chart adjustment */
+#pieChart {
+  width: 150% !important;
+  max-width: 1300px !important;
+  height: 400px !important;
+  margin: 0 auto;
+}

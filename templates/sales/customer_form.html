@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}Yangi mijoz qo‘shish{% endblock %}
+
+{% block content %}
+<section class="flex justify-center items-center min-h-[70vh]">
+  <div class="w-full max-w-md bg-white/70 dark:bg-slate-900/70 backdrop-blur-md
+              p-8 rounded-2xl ring-1 ring-white/30 shadow-md">
+    <h2 class="text-center text-lg font-semibold mb-6 text-brand">
+      Yangi mijoz qo‘shish
+    </h2>
+
+    <form method="post" autocomplete="off" class="space-y-6">
+      {% csrf_token %}
+      {% for field in form %}
+        <div>
+          <label for="{{ field.id_for_label }}" class="block mb-1 font-medium">
+            {{ field.label }}
+          </label>
+          {{ field|add_class:"w-full rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-3 py-2 focus:ring-brand focus:border-brand" }}
+          {% if field.errors %}
+            <p class="text-red-600 text-xs mt-1">{{ field.errors|striptags }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <div class="flex justify-center gap-4">
+        <button type="submit"
+                class="px-6 py-2 rounded-lg bg-brand hover:bg-brand/90
+                       text-white font-semibold shadow">
+          Saqlash
+        </button>
+        <a href="javascript:history.back()"
+           class="px-6 py-2 rounded-lg border border-slate-300 dark:border-slate-600
+                  hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold">
+          Bekor
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

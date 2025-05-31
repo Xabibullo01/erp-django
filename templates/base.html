@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>{% block title %}ERP{% endblock %}</title>
+
+  <!-- Tailwind JIT CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { brand: '#2563eb' } } },
+      darkMode: 'media',
+    };
+  </script>
+
+  <!-- Local overrides (optional) -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <!-- Chart.js (kept) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 z-50">
+    {% include "partials/_navbar.html" %}
+  </header>
+
+  <!-- Flash messages -->
+  {% include "partials/_messages.html" %}
+
+  <!-- Main content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 min-h-[calc(100vh-4rem)]">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Extra page-specific JS -->
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

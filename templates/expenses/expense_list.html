@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Harajatlar{% endblock %}
+
+{% block content %}
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+  <h2 class="text-lg font-semibold">Harajatlar</h2>
+  <a href="{% url 'expense_create' %}"
+     class="inline-flex items-center gap-1 rounded-lg bg-brand px-4 py-2 text-white
+            text-sm font-semibold hover:bg-brand/90 shadow">
+    + Yangi harajat
+  </a>
+</div>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full text-sm">
+    <thead class="bg-slate-100 dark:bg-slate-800/60 text-left uppercase tracking-wider">
+      <tr>
+        <th class="p-3 font-semibold">ID</th>
+        <th class="p-3 font-semibold">Sana</th>
+        <th class="p-3 font-semibold">Kategoriya</th>
+        <th class="p-3 font-semibold">Izoh</th>
+        <th class="p-3 font-semibold text-right">Summa&nbsp;(so‘m)</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-slate-700 bg-white/70 dark:bg-slate-900/50">
+      {% for e in object_list %}
+        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800">
+          <td class="p-3">{{ e.id }}</td>
+          <td class="p-3">{{ e.created_at|date:"Y-m-d" }}</td>
+          <td class="p-3">{{ e.category.name }}</td>
+          <td class="p-3">{{ e.note|default:"—" }}</td>
+          <td class="p-3 text-right">{{ e.amount|floatformat:0 }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5" class="p-6 text-center text-slate-500">Harajatlar topilmadi</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

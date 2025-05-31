@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block title %}Sotuv buyurtmalari{% endblock %}
+
+{% block content %}
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+  <h2 class="text-lg font-semibold text-brand">Sotuvlar</h2>
+  <a href="{% url 'sale_create' %}"
+     class="inline-flex items-center gap-1 rounded-lg bg-brand px-4 py-2 text-white
+            text-sm font-semibold hover:bg-brand/90 shadow">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 4v16m8-8H4"/>
+    </svg>
+    Yangi sotuv
+  </a>
+</div>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full text-sm">
+    <thead class="bg-slate-100 dark:bg-slate-800/60 uppercase tracking-wider">
+      <tr>
+        <th class="p-3 font-semibold w-20 text-center">ID</th>
+        <th class="p-3 font-semibold w-36 text-center">Sana</th>
+        <th class="p-3 font-semibold">Mijoz</th>
+        <th class="p-3 font-semibold text-right w-40">Jami&nbsp;(so‘m)</th>
+        <th class="p-3 font-semibold text-center w-24">Harakatlar</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-slate-700
+                 bg-white/70 dark:bg-slate-900/50">
+      {% for so in object_list %}
+        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800">
+          <td class="p-3 text-center font-semibold text-brand">{{ so.id }}</td>
+          <td class="p-3 text-center">{{ so.created_at|date:"Y-m-d" }}</td>
+          <td class="p-3 whitespace-nowrap max-w-xs">
+            {% if so.customer %}
+              {{ so.customer.first_name }} {{ so.customer.last_name }}
+            {% else %}
+              <span class="text-slate-500">—</span>
+            {% endif %}
+          </td>
+          <td class="p-3 text-right font-semibold">{{ so.total|floatformat:0|intcomma }}</td>
+          <td class="p-3 text-center">
+            <a href="{% url 'sale_detail' so.pk %}"
+               class="grid place-items-center h-8 w-8 rounded-md border
+                      border-slate-300 dark:border-slate-600 hover:bg-slate-100
+                      dark:hover:bg-slate-800 text-xs" aria-label="Ko‘rish">👁</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5" class="p-6 text-center text-slate-500">Sotuvlar topilmadi</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

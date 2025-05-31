@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Tasdiqlash{% endblock %}
+
+{% block content %}
+<section class="flex justify-center items-center min-h-[70vh]">
+  <div class="w-full max-w-xl bg-white/70 dark:bg-slate-900/70 backdrop-blur-md
+              rounded-3xl p-8 sm:p-12 shadow-xl ring-1 ring-white/30 text-center">
+
+    <h2 class="text-2xl font-extrabold text-red-600 flex items-center justify-center gap-2 mb-6">
+      <!-- heroicon exclamation-triangle -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24"
+           fill="currentColor"><path fill-rule="evenodd"
+           d="M10.29 3.86L1.82 18a1.75 1.75 0 001.46 2.62h17.44A1.75 1.75 0 0022.18 18L13.71 3.86a1.75 1.75 0 00-3.42 0zM12 9v4m0 4h.01"
+           clip-rule="evenodd"/></svg>
+      O‘chirishni tasdiqlang
+    </h2>
+
+    <p class="mb-8 text-lg">
+      <span class="font-semibold text-brand">{{ object }}</span> ma’lumoti butunlay o‘chiriladi.<br>
+      Davom etishni istaysizmi?
+    </p>
+
+    <form method="post" class="flex flex-col sm:flex-row justify-center gap-4">
+      {% csrf_token %}
+      <a href="javascript:history.back()"
+         class="px-6 py-3 rounded-lg border border-slate-300 hover:bg-slate-100
+                dark:border-slate-600 dark:hover:bg-slate-800 text-sm font-semibold transition">
+        Bekor qilish
+      </a>
+      <button type="submit"
+              class="px-6 py-3 rounded-lg bg-red-600 hover:bg-red-700 text-white
+                     text-sm font-semibold shadow-md transition">
+        Ha, o‘chirish
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock %}

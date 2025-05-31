@@ -1,0 +1,350 @@
+{#{% load static %}#}
+{#<nav class="bg-white/70 dark:bg-slate-800/70 backdrop-blur-md ring-1 ring-white/30 shadow-sm">#}
+{#  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-6 h-16">#}
+{##}
+{#    <!-- Logo -->#}
+{#    <a href="{% url 'dashboard_home' %}"#}
+{#       class="flex items-center gap-2 text-brand font-extrabold text-xl">#}
+{#      <!-- heroicon: home -->#}
+{#      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">#}
+{#        <path d="M3 10l9-7 9 7v11a2 2 0 01-2 2h-4a2 2 0 01-2-2v-6H9v6a2 2 0 01-2 2H3z"/>#}
+{#      </svg>#}
+{#      ERP#}
+{#    </a>#}
+{##}
+{#    <!-- Primary nav -->#}
+{#    <ul class="hidden md:flex items-center gap-4 text-sm font-medium">#}
+{##}
+{#      <!-- Dashboard -->#}
+{#      <li>#}
+{#        <a href="{% url 'dashboard_home' %}" class="inline-flex items-center gap-1 hover:text-brand">#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">#}
+{#            <path d="M3 13h8V3H3v10zm10 8h8v-6h-8v6zm0-8h8V3h-8v10zm-10 8h8v-6H3v6z"/>#}
+{#          </svg>#}
+{#          Dashboard#}
+{#        </a>#}
+{#      </li>#}
+{##}
+{#      <!-- Inventar dropdown -->#}
+{#      <li class="relative group">#}
+{#        <a href="#" class="inline-flex items-center gap-1 hover:text-brand">#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">#}
+{#            <path d="M4 3h16v2H4zM4 19h16v2H4zM4 7h16v10H4z"/>#}
+{#          </svg>#}
+{#          Inventar#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-[1px]" viewBox="0 0 20 20" fill="currentColor">#}
+{#            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>#}
+{#          </svg>#}
+{#        </a>#}
+{#        <ul class="absolute left-0 mt-2 hidden group-hover:block bg-white/90 dark:bg-slate-800/90#}
+{#                   backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-2 w-56">#}
+{#          <li><a href="{% url 'product_list' %}" class="block px-4 py-2 hover:bg-brand/10">Mahsulotlar</a></li>#}
+{#          <li><a href="{% url 'inv_category_list' %}" class="block px-4 py-2 hover:bg-brand/10">Kategoriyalar</a></li>#}
+{#        </ul>#}
+{#      </li>#}
+{##}
+{#      <!-- Sotuvlar dropdown -->#}
+{#      <li class="relative group">#}
+{#        <a href="#" class="inline-flex items-center gap-1 hover:text-brand">#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">#}
+{#            <path d="M16 11V5H8v6H2l10 9 10-9z"/>#}
+{#          </svg>#}
+{#          Sotuvlar#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-[1px]" viewBox="0 0 20 20" fill="currentColor">#}
+{#            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>#}
+{#          </svg>#}
+{#        </a>#}
+{#        <ul class="absolute left-0 mt-2 hidden group-hover:block bg-white/90 dark:bg-slate-800/90#}
+{#                   backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-2 w-56">#}
+{#          <li><a href="{% url 'sale_list' %}" class="block px-4 py-2 hover:bg-brand/10">Buyurtmalar</a></li>#}
+{#          <li><a href="{% url 'customer_list' %}" class="block px-4 py-2 hover:bg-brand/10">Mijozlar</a></li>#}
+{#        </ul>#}
+{#      </li>#}
+{##}
+{#      <!-- Ta'minot dropdown -->#}
+{#      <li class="relative group">#}
+{#        <a href="#" class="inline-flex items-center gap-1 hover:text-brand">#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">#}
+{#            <path d="M2 13h2l3 9h10l3-9h2M5 6h14l-1 7H6z"/>#}
+{#          </svg>#}
+{#          Ta’minot#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-[1px]" viewBox="0 0 20 20" fill="currentColor">#}
+{#            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>#}
+{#          </svg>#}
+{#        </a>#}
+{#        <ul class="absolute left-0 mt-2 hidden group-hover:block bg-white/90 dark:bg-slate-800/90#}
+{#                   backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-2 w-56">#}
+{#          <li><a href="{% url 'purchase_list' %}" class="block px-4 py-2 hover:bg-brand/10">Xaridlar</a></li>#}
+{#          <li><a href="{% url 'warehouse_list' %}" class="block px-4 py-2 hover:bg-brand/10">Omborxonalar</a></li>#}
+{#          <li><a href="{% url 'supplier_list' %}" class="block px-4 py-2 hover:bg-brand/10">Yetkazib beruvchilar</a></li>#}
+{#        </ul>#}
+{#      </li>#}
+{##}
+{#      <!-- Harajatlar dropdown -->#}
+{#      <li class="relative group">#}
+{#        <a href="#" class="inline-flex items-center gap-1 hover:text-brand">#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">#}
+{#            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>#}
+{#          </svg>#}
+{#          Harajatlar#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-[1px]" viewBox="0 0 20 20" fill="currentColor">#}
+{#            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>#}
+{#          </svg>#}
+{#        </a>#}
+{#        <ul class="absolute left-0 mt-2 hidden group-hover:block bg-white/90 dark:bg-slate-800/90#}
+{#                   backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-2 w-56">#}
+{#          <li><a href="{% url 'expense_list' %}" class="block px-4 py-2 hover:bg-brand/10">Harajatlar</a></li>#}
+{#          <li><a href="{% url 'exp_cat_list' %}" class="block px-4 py-2 hover:bg-brand/10">Kategoriyalar</a></li>#}
+{#        </ul>#}
+{#      </li>#}
+{##}
+{#      <!-- Users -->#}
+{#      {% if user.is_superuser or user.role == "SUPERADMIN" %}#}
+{#        <li>#}
+{#          <a href="{% url 'user_list' %}" class="inline-flex items-center gap-1 hover:text-brand">#}
+{#            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">#}
+{#              <path d="M15 14a5 5 0 10-6 0 7 7 0 00-4 6v1h14v-1a7 7 0 00-4-6zM8 9a4 4 0 118 0 4 4 0 01-8 0z"/>#}
+{#            </svg>#}
+{#            Foydalanuvchilar#}
+{#          </a>#}
+{#        </li>#}
+{#      {% endif %}#}
+{#    </ul>#}
+{##}
+{#    <!-- Spacer -->#}
+{#    <div class="flex-1"></div>#}
+{##}
+{#    <!-- Profile or Auth -->#}
+{#    {% if user.is_authenticated %}#}
+{#      <div class="relative group">#}
+{#        <button class="flex items-center gap-2 text-sm font-semibold hover:text-brand">#}
+{#          {% if user.avatar %}#}
+{#            <img src="{{ user.avatar.url }}" alt="{{ user.username }}"#}
+{#                 class="h-8 w-8 rounded-full ring-2 ring-brand object-cover">#}
+{#          {% else %}#}
+{#            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">#}
+{#              <path fill-rule="evenodd"#}
+{#                    d="M18 8a6 6 0 11-12 0 6 6 0 0112 0zm2 12a9 9 0 10-18 0 9 9 0 0018 0z"#}
+{#                    clip-rule="evenodd"/>#}
+{#            </svg>#}
+{#          {% endif %}#}
+{#          {{ user.username }}#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">#}
+{#            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>#}
+{#          </svg>#}
+{#        </button>#}
+{#        <ul class="absolute right-0 mt-2 hidden group-hover:block bg-white/90 dark:bg-slate-800/90#}
+{#                   backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-1 w-48">#}
+{#          <li>#}
+{#            <form method="post" action="{% url 'logout' %}" class="m-0">#}
+{#              {% csrf_token %}#}
+{#              <button type="submit"#}
+{#                      class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/50">#}
+{#                Chiqish#}
+{#              </button>#}
+{#            </form>#}
+{#          </li>#}
+{#        </ul>#}
+{#      </div>#}
+{#    {% else %}#}
+{#      <a href="{% url 'login' %}"#}
+{#         class="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-white#}
+{#                text-sm font-semibold hover:bg-brand/90 shadow">#}
+{#        <!-- heroicon: arrow-right-on-rectangle -->#}
+{#        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">#}
+{#          <path fill-rule="evenodd"#}
+{#                d="M14.75 11.25a.75.75 0 000 1.5h7.19l-3.22 3.22a.75.75 0 001.06 1.06l4.53-4.53a.75.75 0 000-1.06l-4.53-4.53a.75.75 0 00-1.06 1.06l3.22 3.22h-7.19z"#}
+{#                clip-rule="evenodd"/>#}
+{#          <path#}
+{#            d="M9.75 4.75a3 3 0 013-3h.5a.75.75 0 010 1.5h-.5a1.5 1.5 0 00-1.5 1.5v14a1.5 1.5 0 001.5 1.5h.5a.75.75 0 010 1.5h-.5a3 3 0 01-3-3v-14z"/>#}
+{#        </svg>#}
+{#        Kirish#}
+{#      </a>#}
+{#    {% endif %}#}
+{##}
+{#  </div>#}
+{#</nav>#}
+
+
+
+
+
+
+{% load static %}
+<nav class="bg-white/70 dark:bg-slate-800/70 backdrop-blur-md ring-1 ring-white/30 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-6 h-16">
+
+    <!-- Logo -->
+    <a href="{% url 'dashboard_home' %}"
+       class="flex items-center gap-2 text-brand font-extrabold text-xl">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 10l9-7 9 7v11a2 2 0 01-2 2h-4a2 2 0 01-2-2v-6H9v6a2 2 0 01-2 2H3z"/>
+      </svg>
+      ERP
+    </a>
+
+    <!-- Primary nav -->
+    <ul class="hidden md:flex items-center gap-4 text-sm font-medium">
+
+      <!-- Dashboard -->
+      <li>
+        <a href="{% url 'dashboard_home' %}" class="inline-flex items-center gap-1 hover:text-brand">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 13h8V3H3v10zm10 8h8v-6h-8v6zm0-8h8V3h-8v10zm-10 8h8v-6H3v6z"/>
+          </svg>
+          Dashboard
+        </a>
+      </li>
+
+      <!-- Inventar dropdown -->
+      <li class="relative">
+        <a href="#" class="inline-flex items-center gap-1 hover:text-brand dropdown-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 3h16v2H4zM4 19h16v2H4zM4 7h16v10H4z"/>
+          </svg>
+          Inventar
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-[1px]" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>
+          </svg>
+        </a>
+        <ul class="absolute left-0 mt-2 hidden dropdown-menu bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-2 w-56">
+          <li><a href="{% url 'product_list' %}" class="block px-4 py-2 hover:bg-brand/10">Mahsulotlar</a></li>
+          <li><a href="{% url 'inv_category_list' %}" class="block px-4 py-2 hover:bg-brand/10">Kategoriyalar</a></li>
+        </ul>
+      </li>
+
+      <!-- Sotuvlar dropdown -->
+      <li class="relative">
+        <a href="#" class="inline-flex items-center gap-1 hover:text-brand dropdown-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 11V5H8v6H2l10 9 10-9z"/>
+          </svg>
+          Sotuvlar
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-[1px]" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>
+          </svg>
+        </a>
+        <ul class="absolute left-0 mt-2 hidden dropdown-menu bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-2 w-56">
+          <li><a href="{% url 'sale_list' %}" class="block px-4 py-2 hover:bg-brand/10">Buyurtmalar</a></li>
+          <li><a href="{% url 'customer_list' %}" class="block px-4 py-2 hover:bg-brand/10">Mijozlar</a></li>
+        </ul>
+      </li>
+
+      <!-- Ta'minot dropdown -->
+      <li class="relative">
+        <a href="#" class="inline-flex items-center gap-1 hover:text-brand dropdown-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2 13h2l3 9h10l3-9h2M5 6h14l-1 7H6z"/>
+          </svg>
+          Ta’minot
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-[1px]" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>
+          </svg>
+        </a>
+        <ul class="absolute left-0 mt-2 hidden dropdown-menu bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-2 w-56">
+          <li><a href="{% url 'purchase_list' %}" class="block px-4 py-2 hover:bg-brand/10">Xaridlar</a></li>
+          <li><a href="{% url 'warehouse_list' %}" class="block px-4 py-2 hover:bg-brand/10">Omborxonalar</a></li>
+          <li><a href="{% url 'supplier_list' %}" class="block px-4 py-2 hover:bg-brand/10">Yetkazib beruvchilar</a></li>
+        </ul>
+      </li>
+
+      <!-- Harajatlar dropdown -->
+      <li class="relative">
+        <a href="#" class="inline-flex items-center gap-1 hover:text-brand dropdown-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+          </svg>
+          Harajatlar
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-[1px]" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>
+          </svg>
+        </a>
+        <ul class="absolute left-0 mt-2 hidden dropdown-menu bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-2 w-56">
+          <li><a href="{% url 'expense_list' %}" class="block px-4 py-2 hover:bg-brand/10">Harajatlar</a></li>
+          <li><a href="{% url 'exp_cat_list' %}" class="block px-4 py-2 hover:bg-brand/10">Kategoriyalar</a></li>
+        </ul>
+      </li>
+
+      {% if user.is_superuser or user.role == "SUPERADMIN" %}
+        <li>
+          <a href="{% url 'user_list' %}" class="inline-flex items-center gap-1 hover:text-brand">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15 14a5 5 0 10-6 0 7 7 0 00-4 6v1h14v-1a7 7 0 00-4-6zM8 9a4 4 0 118 0 4 4 0 01-8 0z"/>
+            </svg>
+            Foydalanuvchilar
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+
+    <div class="flex-1"></div>
+
+    <!-- Auth/Profile -->
+    {% if user.is_authenticated %}
+      <div class="relative group">
+        <button class="flex items-center gap-2 text-sm font-semibold hover:text-brand">
+          {% if user.avatar %}
+            <img src="{{ user.avatar.url }}" alt="{{ user.username }}" class="h-8 w-8 rounded-full ring-2 ring-brand object-cover">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 8a6 6 0 11-12 0 6 6 0 0112 0zm2 12a9 9 0 10-18 0 9 9 0 0018 0z" clip-rule="evenodd"/>
+            </svg>
+          {% endif %}
+          {{ user.username }}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>
+          </svg>
+        </button>
+        <ul class="absolute right-0 mt-2 hidden group-hover:block bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg ring-1 ring-black/10 rounded-lg shadow-lg py-1 w-48">
+          <li>
+            <form method="post" action="{% url 'logout' %}" class="m-0">
+              {% csrf_token %}
+              <button type="submit" class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/50">
+                Chiqish
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    {% else %}
+      <a href="{% url 'login' %}" class="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-white text-sm font-semibold hover:bg-brand/90 shadow">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" d="M14.75 11.25a.75.75 0 000 1.5h7.19l-3.22 3.22a.75.75 0 001.06 1.06l4.53-4.53a.75.75 0 000-1.06l-4.53-4.53a.75.75 0 00-1.06 1.06l3.22 3.22h-7.19z" clip-rule="evenodd"/>
+          <path d="M9.75 4.75a3 3 0 013-3h.5a.75.75 0 010 1.5h-.5a1.5 1.5 0 00-1.5 1.5v14a1.5 1.5 0 001.5 1.5h.5a.75.75 0 010 1.5h-.5a3 3 0 01-3-3v-14z"/>
+        </svg>
+        Kirish
+      </a>
+    {% endif %}
+  </div>
+
+  <!-- JS: Click-based Dropdown Logic -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggles = document.querySelectorAll(".dropdown-toggle");
+
+      toggles.forEach(toggle => {
+        toggle.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const menu = this.parentElement.querySelector(".dropdown-menu");
+
+          // Yopib qo'yish boshqa ochilganlar
+          document.querySelectorAll(".dropdown-menu").forEach(m => {
+            if (m !== menu) m.classList.add("hidden");
+          });
+
+          menu.classList.toggle("hidden");
+        });
+      });
+
+      // Tashqariga bosilganda yopish
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".relative")) {
+          document.querySelectorAll(".dropdown-menu").forEach(menu => {
+            menu.classList.add("hidden");
+          });
+        }
+      });
+    });
+  </script>
+</nav>

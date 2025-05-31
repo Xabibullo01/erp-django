@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}{% if object %}Harajatni tahrirlash{% else %}Yangi harajat{% endif %}{% endblock %}
+
+{% block content %}
+<h2 class="text-lg font-semibold mb-6">
+  {% if object %}Harajatni tahrirlash{% else %}Yangi harajat{% endif %}
+</h2>
+
+<form method="post" novalidate
+      class="w-full max-w-2xl bg-white/70 dark:bg-slate-900/70 backdrop-blur-md
+             p-6 rounded-2xl ring-1 ring-white/30 shadow-md space-y-6">
+  {% csrf_token %}
+
+  <div class="grid gap-6 md:grid-cols-3">
+    <div>
+      <label class="block mb-1 font-medium">Kategoriya</label>
+      {{ form.category|add_class:"w-full rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-3 py-2 focus:ring-brand focus:border-brand" }}
+    </div>
+    <div>
+      <label class="block mb-1 font-medium">Summa (so‘m)</label>
+      {{ form.amount|add_class:"w-full rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-3 py-2 focus:ring-brand focus:border-brand" }}
+    </div>
+    <div>
+      <label class="block mb-1 font-medium">Izoh</label>
+      {{ form.note|add_class:"w-full rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-3 py-2 focus:ring-brand focus:border-brand" }}
+    </div>
+  </div>
+
+  <div class="flex flex-col sm:flex-row gap-4">
+    <button class="w-full sm:w-auto px-6 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700
+    text-white font-semibold shadow">
+      Saqlash
+    </button>
+    <a href="javascript:history.back()"
+       class="w-full sm:w-auto px-6 py-2 rounded-lg border border-slate-300 dark:border-slate-600
+    hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-center">
+      Ortga
+    </a>
+  </div>
+</form>
+{% endblock %}

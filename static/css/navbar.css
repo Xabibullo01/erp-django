@@ -1,0 +1,76 @@
+.erp-main-nav .nav-link {
+  position: relative;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #495057;
+  padding: 0.7rem 1.25rem;
+  transition: color 0.18s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.erp-main-nav .nav-link:hover,
+.erp-main-nav .nav-link:focus {
+  color: #0d6efd;
+}
+
+.erp-main-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 0.3rem;
+  height: 2px;
+  background: #0d6efd;
+  border-radius: 3px;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+  transform-origin: center;
+}
+
+.erp-main-nav .nav-link:hover::after,
+.erp-main-nav .nav-link:focus::after {
+  transform: scaleX(1);
+}
+
+.erp-main-nav .dropdown-toggle::after {
+  display: none; /* Hide bootstrap arrow */
+}
+
+.erp-main-nav .dropdown-toggle > .chevron {
+  margin-left: 0.25rem;
+  transition: transform 0.25s;
+}
+
+.erp-main-nav .dropdown-toggle[aria-expanded="true"] > .chevron {
+  transform: rotate(180deg);
+}
+
+.erp-main-nav .dropdown-menu {
+  border: none;
+  border-radius: 0.65rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  background: #fff;
+}
+
+.erp-main-nav .dropdown-item {
+  font-weight: 500;
+  padding: 0.55rem 1.4rem;
+  transition: background-color 0.15s;
+  color: #212529;
+  cursor: pointer;
+}
+
+.erp-main-nav .dropdown-item:hover {
+  background: #f1f4ff;
+  color: #0d6efd;
+}
+
+@media (max-width: 992px) {
+  .erp-navbar .nav {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}

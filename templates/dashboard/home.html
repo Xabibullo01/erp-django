@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% load static humanize %}
+{% load widget_tweaks %}
+
+{% block title %}Boshqaruv paneli{% endblock %}
+
+{% block content %}
+<!-- ----------- FILTR ----------- -->
+<form method="get" class="mb-10 flex flex-wrap items-end gap-4">
+  <div>
+    <label for="yearSelect" class="mb-1 inline-flex items-center gap-1 font-medium">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand" fill="none"
+           viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+      Yilni tanlang
+    </label>
+    {{ filter_form.year|add_class:"block w-44 rounded-lg border-slate-300 bg-slate-50 focus:ring-brand focus:border-brand" }}
+  </div>
+
+  <button type="submit"
+          class="inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-2.5 text-white
+                 font-semibold hover:bg-brand/90 shadow-md shadow-brand/30">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M3 4a1 1 0 011-1h12a1 1 0 01.78 1.625l-4.22 5.271A2 2 0 0012 11.946V17l-4 1v-6.054a2 2 0 00-.56-1.396L3.22 5.625A1 1 0 013 4z"/>
+    </svg>
+    Filtrlash
+  </button>
+</form>
+
+<!-- ---------- KPI CARDLAR ---------- -->
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+  <!-- Mahsulotlar -->
+  <div class="relative overflow-hidden rounded-2xl p-6 text-center shadow-lg
+              ring-1 ring-white/30 backdrop-blur-lg group">
+    <p class="uppercase text-xs font-semibold tracking-wider text-brand mb-2">Mahsulotlar</p>
+    <p class="text-4xl font-extrabold text-brand drop-shadow">{{ product_cnt|intcomma }}</p>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         class="absolute -right-4 -bottom-4 h-24 w-24 text-brand/10
+                group-hover:rotate-12 transition" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 12V7a2 2 0 00-2-2h-3M4 7a2 2 0 012-2h3m0 12v3a2 2 0 01-2 2H6a2 2 0 01-2-2v-3m12 0v3a2 2 0 002 2h1a2 2 0 002-2v-3"/>
+    </svg>
+  </div>
+
+  <!-- Zaxira -->
+  <div class="relative overflow-hidden rounded-2xl p-6 text-center shadow-lg
+              ring-1 ring-white/30 backdrop-blur-lg group">
+    <p class="uppercase text-xs font-semibold tracking-wider text-emerald-600 mb-2">Zaxira (dona)</p>
+    <p class="text-4xl font-extrabold text-emerald-600 drop-shadow">{{ stock|intcomma }}</p>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         class="absolute -right-4 -bottom-4 h-24 w-24 text-emerald-600/10
+                group-hover:rotate-12 transition" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 13V7a2 2 0 00-2-2h-3M4 7a2 2 0 012-2h3m0 12v3a2 2 0 01-2 2H6a2 2 0 01-2-2v-3m12 0v3a2 2 0 002 2h1a2 2 0 002-2v-3"/>
+    </svg>
+  </div>
+
+  <!-- Sotuv -->
+  <div class="relative overflow-hidden rounded-2xl p-6 text-center shadow-lg
+              ring-1 ring-white/30 backdrop-blur-lg group">
+    <p class="uppercase text-xs font-semibold tracking-wider text-amber-500 mb-2">
+      {{ year }} yillik sotuv (so‘m)
+    </p>
+    <p class="text-4xl font-extrabold text-amber-500 drop-shadow">
+      {{ year_total_sales|intcomma }}
+    </p>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         class="absolute -right-4 -bottom-4 h-24 w-24 text-amber-500/10
+                group-hover:rotate-12 transition" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 3v18h18M18 9l-6 6-3-3"/>
+    </svg>
+  </div>
+</div>
+<!-- ----------- 4-ta grafik ----------- -->
+<div class="grid gap-8 sm:grid-cols-1 lg:grid-cols-2">
+  {% comment %}Har bir section min-w-0; chart div w-full{% endcomment %}
+  <section class="rounded-2xl bg-white/60 dark:bg-slate-900/50 p-6 ring-1 ring-white/30
+                   shadow-md shadow-black/10 backdrop-blur-lg min-w-0">
+    <h3 class="text-md font-semibold mb-4 text-center lg:text-left">
+      {{ year }} yil – kategoriya bo‘yicha sotuv
+    </h3>
+    <div id="pieChart" class="w-full" style="height:320px;"></div>
+  </section>
+
+  <section class="rounded-2xl bg-white/60 dark:bg-slate-900/50 p-6 ring-1 ring-white/30
+                   shadow-md shadow-black/10 backdrop-blur-lg min-w-0">
+    <h3 class="text-md font-semibold mb-4 text-center lg:text-left">
+      {{ year }} yil oyma-oy
+    </h3>
+    <div id="barLineChart" class="w-full" style="height:360px;"></div>
+  </section>
+
+  <section class="rounded-2xl bg-white/60 dark:bg-slate-900/50 p-6 ring-1 ring-white/30
+                   shadow-md shadow-black/10 backdrop-blur-lg min-w-0">
+    <h3 class="text-md font-semibold mb-4 text-center lg:text-left">
+      Eng ko‘p sotilgan TOP-5 kategoriya
+    </h3>
+    <div id="topCatChart" class="w-full" style="height:360px;"></div>
+  </section>
+
+  <section class="rounded-2xl bg-white/60 dark:bg-slate-900/50 p-6 ring-1 ring-white/30
+                   shadow-md shadow-black/10 backdrop-blur-lg min-w-0">
+    <h3 class="text-md font-semibold mb-4 text-center lg:text-left">
+      {{ year }} yil – kumulyativ natija
+    </h3>
+    <div id="cumChart" class="w-full" style="height:360px;"></div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+  <script>
+    /* ---------- Maʼlumotlar ---------- */
+    const pieLabels  = {{ pie_labels|safe }};
+    const pieVals    = {{ pie_data|safe }};
+    const months     = {{ months|safe }};
+    const rev        = {{ bar_rev|safe }};
+    const cost       = {{ bar_cost|safe }};
+    const profit     = {{ line_profit|safe }};
+
+    /* ---------- Format funksiyasi (K / mln / mlrd) ---------- */
+    const fmt = n => {
+      if (n >= 1e9) return (n / 1e9).toFixed(1).replace(/\.0$/, '') + ' mlrd';
+      if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + ' mln';
+      if (n >= 1e3) return (n / 1e3).toFixed(0) + ' K';
+      return n;
+    };
+    const fmtTooltip = p => `${p.seriesName}: ${fmt(p.value)}`;
+
+    /* ---------- 1. PIE ---------- */
+    echarts.init(document.getElementById('pieChart')).setOption({
+      tooltip:{ trigger:'item', formatter:p=>`${p.name}: ${fmt(p.value)} (${p.percent}%)` },
+      legend :{ bottom:0, type:'scroll' },
+      series :[{ type:'pie', radius:['45%','70%'], label:{show:false},
+        data: pieLabels.map((l,i)=>({ value:pieVals[i], name:l })) }]
+    });
+
+    /* ---------- 2. BAR + LINE ---------- */
+    echarts.init(document.getElementById('barLineChart')).setOption({
+      tooltip:{ trigger:'axis', formatter:p=>p.map(fmtTooltip).join('<br>') },
+      legend :{ bottom:0, data:['Daromad','Xarajat','Foyda'] },
+      grid:{ top:30,left:50,right:20,bottom:70 },
+      xAxis:{ type:'category', data:months },
+      yAxis:{ type:'value', axisLabel:{ formatter:fmt } },
+      series:[
+        { name:'Daromad', type:'bar', data:rev,  itemStyle:{color:'#3B82F6'}, barMaxWidth:30 },
+        { name:'Xarajat', type:'bar', data:cost, itemStyle:{color:'#F97316'}, barMaxWidth:30 },
+        { name:'Foyda',   type:'line',data:profit,itemStyle:{color:'#10B981'}, smooth:true }
+      ]
+    });
+
+    /* ---------- 3. TOP-5 kategoriya ---------- */
+    const idx=[...pieVals.keys()].sort((a,b)=>pieVals[b]-pieVals[a]).slice(0,5);
+    const topLab=idx.map(i=>pieLabels[i]), topVal=idx.map(i=>pieVals[i]);
+    echarts.init(document.getElementById('topCatChart')).setOption({
+      tooltip:{ trigger:'axis', axisPointer:{type:'shadow'}, formatter:p=>fmtTooltip(p[0]) },
+      grid:{ left:120, top:10, right:20, bottom:40 },
+      xAxis:{ type:'value', axisLabel:{ formatter:fmt } },
+      yAxis:{ type:'category', data:topLab, inverse:true },
+      series:[{ type:'bar', data:topVal, barWidth:16,
+                label:{ show:true, position:'right', formatter:fmt },
+                itemStyle:{ color:'#8B5CF6' } }]
+    });
+
+    /* ---------- 4. Kumulyativ ---------- */
+    const cumRev=[],cumCost=[],cumProfit=[];
+    rev.forEach((v,i)=>{ cumRev[i]=(i?cumRev[i-1]:0)+v;
+                         cumCost[i]=(i?cumCost[i-1]:0)+cost[i];
+                         cumProfit[i]=(i?cumProfit[i-1]:0)+profit[i]; });
+    echarts.init(document.getElementById('cumChart')).setOption({
+      tooltip:{ trigger:'axis', formatter:p=>p.map(fmtTooltip).join('<br>') },
+      legend :{ bottom:0, data:['Jam. daromad','Jam. xarajat','Jam. foyda'] },
+      grid:{ top:30,left:50,right:20,bottom:70 },
+      xAxis:{ type:'category', data:months },
+      yAxis:{ type:'value', axisLabel:{ formatter:fmt } },
+      series:[
+        { name:'Jam. daromad', type:'line', data:cumRev,   smooth:true, areaStyle:{},
+          itemStyle:{color:'#3B82F6'}, lineStyle:{width:2} },
+        { name:'Jam. xarajat', type:'line', data:cumCost,  smooth:true, areaStyle:{},
+          itemStyle:{color:'#F97316'}, lineStyle:{width:2} },
+        { name:'Jam. foyda',   type:'line', data:cumProfit,smooth:true, areaStyle:{},
+          itemStyle:{color:'#10B981'}, lineStyle:{width:2} },
+      ]
+    });
+
+    /* ---------- Responsivlik ---------- */
+    window.addEventListener('resize', () =>
+      echarts.getInstanceByDom(document.body)
+             .forEach(inst=>inst.resize())
+    );
+  </script>
+{% endblock %}

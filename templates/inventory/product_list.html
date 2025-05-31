@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Mahsulotlar{% endblock %}
+
+{% block content %}
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+  <h2 class="text-lg font-semibold">Mahsulotlar</h2>
+  <a href="{% url 'product_create' %}"
+     class="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-4 py-2 text-white
+            text-sm font-semibold hover:bg-emerald-700 shadow">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 4v16m8-8H4"/>
+    </svg>
+    Yangi mahsulot
+  </a>
+</div>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full text-sm">
+    <thead class="bg-slate-100 dark:bg-slate-800/60 text-left uppercase tracking-wider">
+      <tr>
+        <th class="p-3 font-semibold w-32">SKU</th>
+        <th class="p-3 font-semibold">Nomi</th>
+        <th class="p-3 font-semibold">Kategoriya</th>
+        <th class="p-3 font-semibold">Narx</th>
+        <th class="p-3 font-semibold text-center w-24">Amallar</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-slate-700 bg-white/70 dark:bg-slate-900/50">
+      {% for p in object_list %}
+        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800">
+          <td class="p-3">{{ p.sku }}</td>
+          <td class="p-3">{{ p.name }}</td>
+          <td class="p-3">{{ p.category }}</td>
+          <td class="p-3">{{ p.sell_price|floatformat:2 }} UZS</td>
+          <td class="p-3 text-center flex justify-center gap-2">
+            <a href="{% url 'product_update' p.pk %}"
+               class="grid place-items-center h-8 w-8 rounded-md border
+                      border-slate-300 dark:border-slate-600 hover:bg-slate-100
+                      dark:hover:bg-slate-800 text-xs" aria-label="Tahrirlash">✏️</a>
+            <a href="{% url 'product_delete' p.pk %}"
+               class="grid place-items-center h-8 w-8 rounded-md border
+                      border-red-300 dark:border-red-700 text-red-600
+                      hover:bg-red-50 dark:hover:bg-red-900/50 text-xs" aria-label="O‘chirish">🗑️</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5" class="p-6 text-center text-slate-500">Hozircha mahsulotlar mavjud emas</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

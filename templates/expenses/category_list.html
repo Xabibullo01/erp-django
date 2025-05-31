@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Harajat kategoriyalari{% endblock %}
+
+{% block content %}
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+  <h2 class="text-lg font-semibold">Harajat kategoriyalari</h2>
+  <a href="{% url 'exp_cat_create' %}"
+     class="inline-flex items-center gap-1 rounded-lg bg-brand px-4 py-2 text-white
+            text-sm font-semibold hover:bg-brand/90 shadow">
+    + Yangi kategoriya
+  </a>
+</div>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full text-sm">
+    <thead class="bg-slate-100 dark:bg-slate-800/60 text-left uppercase tracking-wider">
+      <tr>
+        <th class="p-3 font-semibold">ID</th>
+        <th class="p-3 font-semibold">Nomi</th>
+        <th class="p-3"></th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-slate-700 bg-white/70 dark:bg-slate-900/50">
+      {% for c in object_list %}
+        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800">
+          <td class="p-3">{{ c.id }}</td>
+          <td class="p-3">{{ c.name }}</td>
+          <td class="p-3 text-right flex gap-2 justify-end">
+            <a href="{% url 'exp_cat_update' c.pk %}"
+               class="grid place-items-center h-8 w-8 rounded-md border
+                      border-slate-300 dark:border-slate-600 hover:bg-slate-100
+                      dark:hover:bg-slate-800 text-xs">
+              ✏️
+            </a>
+            <a href="{% url 'exp_cat_delete' c.pk %}"
+               class="grid place-items-center h-8 w-8 rounded-md border
+                      border-red-300 dark:border-red-700 text-red-600
+                      hover:bg-red-50 dark:hover:bg-red-900/50 text-xs">
+              🗑️
+            </a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3" class="p-6 text-center text-slate-500">Ro‘yxat bo‘sh</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

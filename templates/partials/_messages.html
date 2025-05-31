@@ -1,0 +1,11 @@
+{% if messages %}
+  <div class="fixed top-4 right-4 space-y-3 z-50">
+    {% for m in messages %}
+      <div class="px-4 py-3 rounded-lg shadow-lg ring-1 ring-black/10
+                  bg-brand/90 text-white text-sm font-medium
+                  animate-[fadein_0.4s_ease,bounce_0.6s_ease]">
+        {{ m }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
