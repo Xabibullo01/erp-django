@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ──────────── Security ────────────
 SECRET_KEY = "django-insecure-y+4pv@o-_@=6pwrx0=2_p^n@kh3(a1fxf7*rgayd6$(_46qd$="
 DEBUG = True  # ⬅️  prod’da False
-ALLOWED_HOSTS = []  # ⬅️  prod’da domen/IP qo‘shing
+ALLOWED_HOSTS = ['*']  # ⬅️  prod’da domen/IP qo‘shing
 
 # ──────────── Installed apps ────────────
 DJANGO_APPS = [
